@@ -16,9 +16,9 @@ Level 1 → 2
 
 Username: bandit1
 
-Password:
+Password: ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
 
-Commands:
+Commands: 
 
 ssh bandit1@bandit.labs.overthewire.org -p 2220
 cat ./-
@@ -27,7 +27,7 @@ Level 2 → 3
 
 Username: bandit2
 
-Password:
+Password: 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
 
 Commands:
 
@@ -38,53 +38,68 @@ Level 3 → 4
 
 Username: bandit3
 
-Password:
+Password: MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
 
 Commands:
 
 ssh bandit3@bandit.labs.overthewire.org -p 2220
 cd inhere
 ls -a
-cat .hidden
+cat ./"...Hiding-From-You"
 
 Level 4 → 5
 
 Username: bandit4
 
-Password:
+Password: 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
 
 Commands:
 
 ssh bandit4@bandit.labs.overthewire.org -p 2220
-# commands here
+ls  shows inhere directory 
+cd inhere 
+ls  shows -file00  -file01  -file02  -file03  -file04  -file05  -file06  -file07  -file08  -file09
+For the first time, I have cat every file and found the password, but I can also use 
+find -type f | xargs file | grep text -- find is a command to find, -type f makes the search only for files but not for directories or other types of objects,  Xargs - as file command cant take inputs directly, you need xargs for taking list of filenames from pipe line and passes them as arguments for file. here file command determines the type of the file. in them to if you apply grep text, you only get file with text content. 
+command - find -type f | xargs file | grep text result file07. 
+
 
 Level 5 → 6
 
 Username: bandit5
 
-Password:
+Password:4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
 
 Commands:
 
 ssh bandit5@bandit.labs.overthewire.org -p 2220
 # commands here
+characters of the file in which the password has been stored. We can achieve each by a different command as follows.
+human-readable -  we can use file command for determining the file type. If the file command's output for a given file includes terms like "ASCII text," "UTF-8 Unicode text," or indicates a specific type of script (e.g., "shell script," "Python script") and "text executable," it suggests the file is human-readable. If the output describes the file as a "binary," "executable," or other non-textual format, it is likely not directly human-readable.
+1033 bytes in size -size 1033c
+not executable ! -executable
+command - find -type f -size 1033c ! -executable | xargs file | grep text
+ result - ./maybehere07/.file2: ASCII text, with very long lines (1000)
+command - cat ./maybehere07/.file2
 
 Level 6 → 7
 
 Username: bandit6
 
-Password:
+Password: HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
 
 Commands:
 
 ssh bandit6@bandit.labs.overthewire.org -p 2220
 # commands here
+find / -group bandit6 -user bandit7 -size 33c 2>/dev/null
+and then cat the given path.
 
 Level 7 → 8
 
 Username: bandit7
 
-Password:
+Password: morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
 
 Commands:
 
