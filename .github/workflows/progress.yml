@@ -1,0 +1,32 @@
+name: Update Bandit Progress Badge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Count completed levels
+        run: |
+          DONE=$(grep -c "Password:" BANDIT.md | grep -v "Password: $" | wc -l)
+          echo "DONE=$DONE" >> $GITHUB_ENV
+
+      - name: Update README badge
+        run: |
+          TOTAL=34
+          BADGE="![Progress](https://img.shields.io/badge/Bandit%20Progress-${DONE}%2F${TOTAL}-brightgreen)"
+          sed -i "1s|.*|$BADGE|" README.md
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add README.md
+          git commit -m "Update progress badge to $DONE/$TOTAL"
+          git push
