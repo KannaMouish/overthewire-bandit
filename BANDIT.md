@@ -75,7 +75,7 @@ Commands:
 ssh bandit5@bandit.labs.overthewire.org -p 2220
 # commands here
 characters of the file in which the password has been stored. We can achieve each by a different command as follows.
-human-readable -  we can use file command for determining the file type. If the file command's output for a given file includes terms like "ASCII text," "UTF-8 Unicode text," or indicates a specific type of script (e.g., "shell script," "Python script") and "text executable," it suggests the file is human-readable. If the output describes the file as a "binary," "executable," or other non-textual format, it is likely not directly human-readable.
+human-readable -  we can use the file command for determining the file type. If the file command's output for a given file includes terms like "ASCII text," "UTF-8 Unicode text," or indicates a specific type of script (e.g., "shell script," "Python script") and "text executable," it suggests the file is human-readable. If the output describes the file as a "binary," "executable," or other non-textual format, it is likely not directly human-readable.
 1033 bytes in size -size 1033c
 not executable ! -executable
 command - find -type f -size 1033c ! -executable | xargs file | grep text
