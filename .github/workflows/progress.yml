@@ -6,11 +6,14 @@ on:
 jobs:
   update-badge:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
       
       - name: Count completed levels
         run: |
@@ -33,16 +36,10 @@ jobs:
           fi
       
       - name: Commit and push changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update progress badge to ${{ env.DONE }}/${{ env.TOTAL }}"
+          file_pattern: README.md
+          commit_user_name: github-actions[bot]
+          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
           
-          # Check if there are any changes
-          if git diff --quiet HEAD -- README.md; then
-            echo "No changes to README.md, skipping commit"
-            exit 0
-          fi
-          
-          git add README.md
-          git commit -m "Update progress badge to $DONE/$TOTAL"
-          git push origin main
