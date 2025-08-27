@@ -1,4 +1,4 @@
-![Progress](https://img.shields.io/badge/Bandit%20Progress-0%2F34-brightgreen)
+![Progress](https://img.shields.io/badge/Bandit%20Progress-6%2F34-brightgreen)
 
 # OverTheWire Bandit Walkthrough
 
