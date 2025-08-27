@@ -1,27 +1,28 @@
 name: Update Bandit Progress Badge
-
 on:
   push:
     branches:
       - main
-
 jobs:
   update-badge:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
       - name: Count completed levels
         run: |
           # Count lines in BANDIT.md where Password is filled
           DONE=$(grep -E "Password:\s+\S+" BANDIT.md | wc -l)
+          TOTAL=34
           echo "DONE=$DONE" >> $GITHUB_ENV
-          echo "Completed levels: $DONE"
-
+          echo "TOTAL=$TOTAL" >> $GITHUB_ENV
+          echo "Completed levels: $DONE out of $TOTAL"
+      
       - name: Update README badge
         run: |
-          TOTAL=34
           BADGE="![Progress](https://img.shields.io/badge/Bandit%20Progress-${DONE}%2F${TOTAL}-brightgreen)"
           
           # Replace first line with badge; create README.md if it doesn't exist
@@ -30,11 +31,18 @@ jobs:
           else
             sed -i "1s|.*|$BADGE|" README.md
           fi
-
+      
       - name: Commit and push changes
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          # Check if there are any changes
+          if git diff --quiet HEAD -- README.md; then
+            echo "No changes to README.md, skipping commit"
+            exit 0
+          fi
+          
           git add README.md
-          git commit -m "Update progress badge to $DONE/$TOTAL" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
+          git commit -m "Update progress badge to $DONE/$TOTAL"
+          git push origin main
