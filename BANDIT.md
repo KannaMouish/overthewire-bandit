@@ -104,15 +104,16 @@ Password: morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
 Commands:
 
 ssh bandit7@bandit.labs.overthewire.org -p 2220
-# commands here
+# commands here cat data.txt | grep millionth
+
 
 Level 8 → 9
 
 Username: bandit8
 
-Password:
+Password: dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
 
-Commands:
+Commands: sort data.txt | uniq -u
 
 ssh bandit8@bandit.labs.overthewire.org -p 2220
 # commands here
@@ -121,9 +122,15 @@ Level 9 → 10
 
 Username: bandit9
 
-Password:
+Password: 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
 
-Commands:
+Commands: strings data.txt | grep =====
+For extracting readable strings from binary or non-text files:
+strings: Scans a file (often binary executables or libraries) and extracts sequences of printable characters. By default, it finds strings of at least 4 characters. Use -n to adjust the minimum length.
+Code
+
+    strings binary_file
+    strings -n 2 binary_file
 
 ssh bandit9@bandit.labs.overthewire.org -p 2220
 # commands here
@@ -132,9 +139,9 @@ Level 10 → 11
 
 Username: bandit10
 
-Password:
+Password: FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
 
-Commands:
+Commands: cat data.txt | base64 -d
 
 ssh bandit10@bandit.labs.overthewire.org -p 2220
 # commands here
@@ -143,7 +150,7 @@ Level 11 → 12
 
 Username: bandit11
 
-Password:
+Password: dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
 
 Commands:
 
