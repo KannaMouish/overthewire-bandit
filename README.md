@@ -43,21 +43,4 @@ Bandit is the recommended starting point for anyone new to Linux or Capture the 
 🔄 Actively updating as I progress through the levels
 
 ✨ Author
-Maintained by KannaMouish
-
-yaml
-Copy code
-
----
-
-If you commit this file as `README.md` on the main branch, GitHub will automatically display it as the **homepage of your repo** — instant professional look 😎.  
-
-Want me to also show you how to make a **nice badge / progress tracker** at the top (like “Progress: 3/34 levels completed ✅”)?
-
-
-
-
-
-
-
-Ask ChatGPT
+Maintained by Mounish Nizampatnam.
